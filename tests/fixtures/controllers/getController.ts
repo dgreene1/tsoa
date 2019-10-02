@@ -4,7 +4,15 @@ import { GenericModel, TestClassModel, TestModel, TestSubModel } from '../testMo
 import { ModelService } from './../services/modelService';
 
 @Route('GetTest')
-export class GetTestController extends Controller {
+export class GetTestController extends Controller<{ hello: 'my name is' }> {
+  constructor() {
+    super({
+      transformIncomingRequest: () => {
+        return ({} as unknown) as { bob: 'smith' };
+      },
+    });
+  }
+
   /**
    * This is a description of the getModel method
    * this is some more text on another line
